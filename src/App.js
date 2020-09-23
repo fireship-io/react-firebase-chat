@@ -10,11 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
-<<<<<<< HEAD
   // your config
-=======
- // your config
->>>>>>> a810dd8a4bc0681e17c4ecd700aae5397404c0d5
 })
 
 const auth = firebase.auth();
