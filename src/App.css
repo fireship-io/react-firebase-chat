@@ -28,7 +28,6 @@ body {
 .App section {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   min-height: 100vh;
   background-color: rgb(40, 37, 53);
