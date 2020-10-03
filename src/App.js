@@ -107,14 +107,16 @@ function ChatRoom() {
 
 
 function ChatMessage(props) {
-  const { text, uid, photoURL } = props.message;
+
+  const { text, uid, photoURL, createdAt } = props.message;
+  var n = new Date(createdAt * 1000).toLocaleTimeString()
 
   const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
   return (<>
     <div className={`message ${messageClass}`}>
       <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
-      <p>{text}</p>
+      <p1>{text}<P>{n}</P></p1>
     </div>
   </>)
 }
