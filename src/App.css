@@ -115,7 +115,7 @@ ul, li {
   list-style: none;
 }
 
-p {
+p1 {
   max-width: 500px;
   margin-bottom: 12px;
   line-height: 24px;
@@ -136,12 +136,12 @@ p {
   flex-direction: row-reverse;
 }
 
-.sent p {
+.sent p1 {
   color: white;
   background: #0b93f6;
   align-self: flex-end;
 }
-.received p {
+.received p1{
   background: #e5e5ea;
   color: black;
 }
@@ -152,4 +152,8 @@ img {
   border-radius: 50%;
   margin: 2px 5px;
 }
+p {
+  font-size: 10px;
 
+  
+}
