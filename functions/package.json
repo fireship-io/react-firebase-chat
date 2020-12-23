@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "bad-words": "^3.0.3",
-    "firebase-admin": "^8.10.0",
+    "firebase-admin": "^9.4.2",
     "firebase-functions": "^3.6.1"
   },
   "devDependencies": {
