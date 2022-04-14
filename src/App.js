@@ -1,21 +1,29 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect} from 'react';
 import './App.css';
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/analytics';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection,  query, orderBy, limit, serverTimestamp, addDoc } from 'firebase/firestore';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+//import 'firebase/compat/analytics';
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-firebase.initializeApp({
-  // your config
-})
+const firebaseConfig = {
+  apiKey: "AIzaSyDqHfhTJ-teh-I8QITx_rMqPJeBeJFzGO0",
+  authDomain: "group-chat-917bb.firebaseapp.com",
+  projectId: "group-chat-917bb",
+  storageBucket: "group-chat-917bb.appspot.com",
+  messagingSenderId: "851586440341",
+  appId: "1:851586440341:web:e2d693d9e5a3df1b46cf9c",
+  measurementId: "G-504CZTVRDY"
+};
 
-const auth = firebase.auth();
-const firestore = firebase.firestore();
-const analytics = firebase.analytics();
+initializeApp(firebaseConfig);
+// init firestore services
+const db = getFirestore();
+const auth = getAuth();
+//const analytics = firebase.analytics();
 
 
 function App() {
@@ -40,8 +48,8 @@ function App() {
 function SignIn() {
 
   const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
   }
 
   return (
@@ -62,42 +70,48 @@ function SignOut() {
 
 function ChatRoom() {
   const dummy = useRef();
-  const messagesRef = firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt').limit(25);
+  const messageInput = useRef();
+  const messagesRef = collection(db, 'messages');
+  const q = query(messagesRef, orderBy('createdAt', 'desc'), limit(25));
 
-  const [messages] = useCollectionData(query, { idField: 'id' });
+  const [messages] = useCollectionData(q);
 
   const [formValue, setFormValue] = useState('');
-
 
   const sendMessage = async (e) => {
     e.preventDefault();
 
     const { uid, photoURL } = auth.currentUser;
 
-    await messagesRef.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    await addDoc(messagesRef, {
       uid,
-      photoURL
+      photoURL,
+      text: formValue,
+      createdAt: serverTimestamp()
     })
 
+    messageInput.current.focus();
     setFormValue('');
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
+    //dummy is updated when the component is re-rendered, instead of after a message is sent.
   }
+
+  //Everytime messages is modified, will use the dummy reference to scroll to the bottom.
+  useEffect(() => {
+    dummy.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   return (<>
     <main>
 
-      {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-
-      <span ref={dummy}></span>
+      {messages && messages.slice(0).reverse().map((msg, idx) => <ChatMessage key={idx} message={msg} />)}
+    
+      <div ref={dummy}/>
 
     </main>
 
     <form onSubmit={sendMessage}>
 
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
+      <input ref={messageInput} value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
 
       <button type="submit" disabled={!formValue}>🕊️</button>
 
@@ -113,7 +127,7 @@ function ChatMessage(props) {
 
   return (<>
     <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} referrerPolicy="no-referrer" />
       <p>{text}</p>
     </div>
   </>)
