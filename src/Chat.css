@@ -53,6 +53,8 @@ main {
     border-radius: 25px;
     flex-direction: row;
     align-items: center;
+    display: inline-flex;
+    width: 95%;
   }
   
 input {
@@ -64,6 +66,7 @@ input {
     padding: 0 10px;
     letter-spacing: 0;
     flex: 8;
+    background-color: transparent;
   }
   
   button {

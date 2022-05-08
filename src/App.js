@@ -1,29 +1,20 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
 import './Chat.css';
+import { firebaseConfig } from './config';
 
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/analytics';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-firebase.initializeApp({
-  apiKey: "AIzaSyD1q2WvZ1JRGqCyjKa4LylpzMfhyZuCDWU",
-  authDomain: "showintel-8dcf8.firebaseapp.com",
-  databaseURL: "https://showintel-8dcf8.firebaseio.com",
-  projectId: "showintel-8dcf8",
-  storageBucket: "showintel-8dcf8.appspot.com",
-  messagingSenderId: "58581328267",
-  appId: "1:58581328267:web:49b2e8b62825a148648f8e",
-  measurementId: "G-214P1FQBKT"
-})
-
-const auth = firebase.auth();
-const firestore = firebase.firestore();
-// const analytics = firebase.analytics();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const firestore = getFirestore(app);
+const analytics = getAnalytics(app);
 
 function App() {
 
