@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
+import './Chat.css';
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -10,13 +11,19 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 firebase.initializeApp({
-  // your config
+  apiKey: "AIzaSyD1q2WvZ1JRGqCyjKa4LylpzMfhyZuCDWU",
+  authDomain: "showintel-8dcf8.firebaseapp.com",
+  databaseURL: "https://showintel-8dcf8.firebaseio.com",
+  projectId: "showintel-8dcf8",
+  storageBucket: "showintel-8dcf8.appspot.com",
+  messagingSenderId: "58581328267",
+  appId: "1:58581328267:web:49b2e8b62825a148648f8e",
+  measurementId: "G-214P1FQBKT"
 })
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 const analytics = firebase.analytics();
-
 
 function App() {
 
@@ -25,12 +32,16 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>⚛️🔥💬</h1>
+        <h1>Sandbox Env</h1>
         <SignOut />
       </header>
-
       <section>
-        {user ? <ChatRoom /> : <SignIn />}
+        <section className="main">
+          <p>Main body</p>
+        </section>
+        <section className="rail">
+          {user ? <ChatRoom /> : <SignIn />}
+        </section>
       </section>
 
     </div>
@@ -95,12 +106,14 @@ function ChatRoom() {
 
     </main>
 
-    <form onSubmit={sendMessage}>
-
-      <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
-
-      <button type="submit" disabled={!formValue}>🕊️</button>
-
+    <form onSubmit={sendMessage} className="chatInput">
+      <div className="inputContainer">
+        <input 
+          value={formValue}
+          onChange={(e) => setFormValue(e.target.value)} 
+          placeholder="Say something..." />
+        <button type="submit" disabled={!formValue}>🕊️</button>
+      </div>
     </form>
   </>)
 }

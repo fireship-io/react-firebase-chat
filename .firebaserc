@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "fireship-demos"
-  }
+    "default": "showintel-8dcf8",
+    "staging": "showintel-8dcf8"
+  },
+  "targets": {}
 }
