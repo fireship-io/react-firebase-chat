@@ -13,31 +13,34 @@ body {
   height: 10vh;
   min-height: 50px;
   color: white;
-  position: fixed;
   width: 100%;
-  top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 99;
   padding: 10px;
   box-sizing: border-box;
 }
 
-.App section {
-  display: inline-block;
-  flex-direction: column;
+.App > section {
   justify-content: center;
   min-height: 100vh;
   background-color: rgb(40, 37, 53);
   width: 100%;
   overflow: auto;
+  display: flex;
+  flex-direction: row;
 }
 
 .App section.main {
   width: 70%;
+  display: flex;
 }
 
 .App section.rail {
   width: 30%;
+  display: flex;
+}
+
+body > iframe {
+  display: none;
 }

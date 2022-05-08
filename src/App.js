@@ -23,7 +23,7 @@ firebase.initializeApp({
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
-const analytics = firebase.analytics();
+// const analytics = firebase.analytics();
 
 function App() {
 
@@ -35,9 +35,9 @@ function App() {
         <h1>Sandbox Env</h1>
         <SignOut />
       </header>
-      <section>
+      <section className="body">
         <section className="main">
-          <p>Main body</p>
+          <p>Main Body</p>
         </section>
         <section className="rail">
           {user ? <ChatRoom /> : <SignIn />}
@@ -112,7 +112,7 @@ function ChatRoom() {
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)} 
           placeholder="Say something..." />
-        <button type="submit" disabled={!formValue}>🕊️</button>
+        <button type="submit" disabled={!formValue}>Go</button>
       </div>
     </form>
   </>)
@@ -126,7 +126,7 @@ function ChatMessage(props) {
 
   return (<>
     <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+      <img alt="avatar" src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
       <p>{text}</p>
     </div>
   </>)

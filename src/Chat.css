@@ -73,7 +73,6 @@ input {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     cursor: pointer;
     font-size: 1.25rem;
   }
@@ -89,7 +88,6 @@ input {
     background: white;
     max-width: 400px;
     margin: 0 auto;
-    position: ab;
   }
   
   
