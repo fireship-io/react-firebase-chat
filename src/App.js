@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
-import './Chat.css';
+import './Chat.scss';
 import { firebaseConfig } from './config';
 
 import { initializeApp } from 'firebase/app';
@@ -40,7 +40,6 @@ function App() {
 }
 
 function SignIn() {
-
   const signInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
@@ -89,7 +88,7 @@ function ChatRoom() {
   }
 
   return (<>
-    <main>
+    <main className="chat">
 
       {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
 
