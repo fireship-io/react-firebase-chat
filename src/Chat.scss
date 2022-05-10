@@ -5,48 +5,55 @@ main {
     overflow-y: scroll;
     display: flex;
     flex-direction: column;
+    flex: 1;
+    align-items: center;
 
     ul, li {
       text-align: left;
       list-style: none;
     }
 
-    p {
-      max-width: 500px;
-      margin-bottom: 12px;
-      line-height: 24px;
-      padding: 10px 20px;
-      border-radius: 25px;
-      position: relative;
-      color: white;
-      text-align: center;
-    }
-    
     .message {
-      display: flex;
-      align-items: center;
+      background-color: #fff;
+      border-radius: 20px;
+      width: 90%; 
+      flex-direction: row;
+      margin: 5px 0;
+
+      .avatar {
+        margin-left: 10px;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+  
+      .messageContainer {
+
+        .username {
+          font-family: 'PlutoTVSansV10-Bold', Arial, Helvetica, sans-serif;
+          font-size: 18px;
+          color: #000;
+          padding-bottom: 5px;
+          text-transform: capitalize;
+        }
+  
+        .message {
+          font-family: 'PlutoTVSansV10-Medium', Arial, Helvetica, sans-serif;
+          font-size: 16px;
+          padding-bottom: 5px;
+          color: #7D7D7E;
+        }
+  
+        .date {
+          font-family: 'PlutoTVSansV10-Medium', Arial, Helvetica, sans-serif;
+          font-size: 13px;
+          color: #7D7D7E;
+          padding-bottom: 5px;
+        }
+      }
     }
-    
-    .sent {
-      flex-direction: row-reverse;
-    }
-    
-    .sent p {
-      color: white;
-      background: #0b93f6;
-      align-self: flex-end;
-    }
-    .received p {
-      background: #e5e5ea;
-      color: black;
-    }
-    
-    img {
-      width: 65px;
-      height: 65px;
-      border-radius: 50%;
-      margin: 2px 5px;
-    }  
   }
   
   main::-webkit-scrollbar {

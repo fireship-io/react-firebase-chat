@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^13.2.1",
     "eslint": "^5.16.0",
     "firebase": "^9.8.0",
+    "moment": "^2.29.3",
+    "prettier": "^2.6.2",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-firebase-hooks": "^5.0.3",
@@ -18,7 +20,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"**/*.{ts,tsx,scss,js,jsx,md,yml,json}\""
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx}": [
+      "eslint -c .precommit.eslintrc.js --fix",
+      "prettier --write"
+    ],
+    "**/*.{scss,js,jsx,md,yml,json}": [
+      "prettier --write"
+    ]
   },
   "browserslist": {
     "production": [
