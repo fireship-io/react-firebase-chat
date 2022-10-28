@@ -44,9 +44,15 @@ function SignIn() {
     auth.signInWithPopup(provider);
   }
 
+  const signInAnonymous = () => {
+    auth.signInAnonymously().catch(alert);
+  }
+
+
   return (
     <>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
+      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button><br/>
+      <button className="sign-in" onClick={signInAnonymous}>Sign in Anonymously</button>
       <p>Do not violate the community guidelines or you will be banned for life!</p>
     </>
   )
@@ -113,7 +119,7 @@ function ChatMessage(props) {
 
   return (<>
     <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+      <img src={photoURL || './anonymous.png'} />
       <p>{text}</p>
     </div>
   </>)
