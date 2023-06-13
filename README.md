@@ -1,6 +1,6 @@
 # React Firebase Super Chat
 
-This is a super chat application developed using React Native, Tailwind CSS, and Firebase for authentication and database operations.
+This is a super chat application developed using React, Tailwind CSS, and Firebase for authentication and database operations.
 
 ## Prerequisites
 
