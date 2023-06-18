@@ -36,11 +36,11 @@ export default function ChatRoom() {
         <span ref={dummy}></span>
       </main>
       <form onSubmit={sendMessage}>
-        <input
+        <textare
           maxLength={250}
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
-          placeholder="say something nice"
+          placeholder="Send a Message..."
         />
         <button type="submit" disabled={!formValue}>
           🕊️
